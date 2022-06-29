@@ -62,3 +62,32 @@ class DefaultTextButton extends StatelessWidget {
     );
   }
 }
+
+class DefaultTextField extends StatelessWidget {
+   DefaultTextField({this.controller,this.validator,this.hintText,Key? key}) : super(key: key);
+  String? hintText ;
+  String? validator;
+   TextEditingController? controller;
+  @override
+  Widget build(BuildContext context) {
+    return  TextFormField(
+      controller: controller,
+      validator: (String? value){
+        if(value!.isEmpty){
+          return validator;
+        }
+      },
+      decoration:  InputDecoration(
+        labelStyle: TextStyle(color: Colors.grey),
+        hintStyle: TextStyle(color: Colors.grey),
+          hintText: hintText,
+        enabledBorder: OutlineInputBorder(
+        ),
+        border: OutlineInputBorder(
+        ),
+
+      ),
+    );
+  }
+}
+
