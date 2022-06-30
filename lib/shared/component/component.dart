@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 defaultTextStyle({
   FontWeight? fontWeight,
-   double? fontSize,
+  double? fontSize,
   String? fontFamily,
   Color? textColor,
 }) =>
@@ -15,31 +15,60 @@ defaultTextStyle({
       color: textColor,
     );
 
-navigateAndRemove(BuildContext context, Widget widget) => Navigator.pushAndRemoveUntil(
-    context, MaterialPageRoute(builder: (context) => widget), (route) => false);
+navigateAndRemove(BuildContext context, Widget widget) =>
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => widget), (route) => false);
+
+Widget defaultOutlineButton({
+  required String text,
+}) =>
+    Container(
+      width: double.infinity,
+      height: 50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: Colors.blue, width: 1)),
+      child: OutlinedButton(
+          clipBehavior: Clip.antiAlias,
+          onPressed: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                image: AssetImage('assets/images/icons8-google-48 (1).png'),
+                width: 25,
+                height: 25,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Text(text),
+            ],
+          )),
+    );
 
 class DefaultTextButton extends StatelessWidget {
   DefaultTextButton(
       {required this.fontSize,
-      this.color,
+      required this.color,
       required this.text,
       required this.onPressed,
-      this.height,
-      this.width,
+      required this.height,
+      required this.width,
       this.fontWeight,
-      this.textColor,
-      this.radius,
+      required this.textColor,
+      required this.radius,
       Key? key})
       : super(key: key);
   String text;
   Function onPressed;
-  Color? textColor;
-  Color? color;
+  Color textColor;
+  Color color;
   double fontSize;
   FontWeight? fontWeight;
-  double? width;
-  double? height;
-  double? radius;
+  double width = double.infinity;
+  double height = 40;
+  double radius = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +76,11 @@ class DefaultTextButton extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-          color: color, borderRadius: BorderRadius.circular(radius!)),
+          color: color, borderRadius: BorderRadius.circular(radius)),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          onPressed();
+        },
         child: Text(
           text,
           style: TextStyle(
@@ -64,30 +95,44 @@ class DefaultTextButton extends StatelessWidget {
 }
 
 class DefaultTextField extends StatelessWidget {
-   DefaultTextField({this.controller,this.validator,this.hintText,Key? key}) : super(key: key);
-  String? hintText ;
+  DefaultTextField(
+
+      {this.keyboard,
+      this.prefixIcon,
+      this.controller,
+      this.validator,
+      this.hintText,
+        this.obscureText,
+        this.suffixIcon,
+      Key? key})
+      : super(key: key);
+  String? hintText;
   String? validator;
-   TextEditingController? controller;
+  TextEditingController? controller;
+  Widget? prefixIcon;
+  Widget? suffixIcon;
+  TextInputType? keyboard;
+  bool? obscureText ;
+
   @override
   Widget build(BuildContext context) {
-    return  TextFormField(
+    return TextFormField(
+      obscureText: obscureText!,
+      keyboardType: keyboard,
       controller: controller,
-      validator: (String? value){
-        if(value!.isEmpty){
+      validator: (String? value) {
+        if (value!.isEmpty) {
           return validator;
         }
       },
-      decoration:  InputDecoration(
-        labelStyle: TextStyle(color: Colors.grey),
+      decoration: InputDecoration(
+        prefixIcon: prefixIcon,
         hintStyle: TextStyle(color: Colors.grey),
-          hintText: hintText,
-        enabledBorder: OutlineInputBorder(
-        ),
-        border: OutlineInputBorder(
-        ),
-
+        hintText: hintText,
+        suffixIcon: suffixIcon,
+        enabledBorder: OutlineInputBorder(),
+        border: OutlineInputBorder(),
       ),
     );
   }
 }
-

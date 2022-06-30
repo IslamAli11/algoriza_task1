@@ -1,5 +1,6 @@
 import 'package:algoriza_task1/modules/login_screen.dart';
 import 'package:algoriza_task1/modules/onboarding_screen.dart';
+import 'package:algoriza_task1/modules/register_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

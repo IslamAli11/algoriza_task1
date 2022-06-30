@@ -29,11 +29,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
-
-             decoration: BoxDecoration(
-                 color: Colors.grey[200],
-               borderRadius: BorderRadius.circular(30.0)
-             ),
+              decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(30.0)),
               child: TextButton(
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
@@ -44,15 +42,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   },
                   child: Text(
                     'Skip',
-                    style:
-                        defaultTextStyle(fontSize: 17.0, textColor: Colors.black),
+                    style: defaultTextStyle(
+                        fontSize: 17.0, textColor: Colors.black),
                   )),
             ),
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20,bottom: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Column(
           children: [
             Row(
@@ -72,11 +70,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       fontFamily: 'Baloo_2',
                       textColor: Colors.teal),
                 ),
-
               ],
             ),
             SizedBox(
-              height: height*.01,
+              height: height * .01,
             ),
             Expanded(
               child: PageView.builder(
@@ -102,7 +99,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
             SizedBox(
-              height:height*.03 ,
+              height: height * .03,
             ),
             DefaultTextButton(
                 fontSize: 18,
@@ -116,20 +113,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   navigateAndRemove(context, LoginScreen());
                 }),
             SizedBox(
-              height:height*.02 ,
+              height: height * .02,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Don\'t have an account?'),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     navigateAndRemove(context, RegisterScreen());
                   },
-                    child: Text(
-                  'Sign Up',
-                  style: defaultTextStyle(textColor: Colors.teal),
-                ),
+                  child: Text(
+                    'Sign Up',
+                    style: defaultTextStyle(textColor: Colors.teal),
+                  ),
                 ),
               ],
             ),
